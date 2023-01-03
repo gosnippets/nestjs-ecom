@@ -1,3 +1,4 @@
+import { SnippetStatus } from 'src/enums/snippetStatus.enum';
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
@@ -15,16 +16,31 @@ export class Snippet {
     description: string;
 
     @Column({ nullable: true })
+    image: string;
+
+    @Column({ type: "longtext", nullable: true })
     htmlcode: string;
-
-    @Column({ nullable: true })
+ 
+    @Column({ type: "longtext", nullable: true })
     csscode: string;
-
-    @Column({ nullable: true })
+ 
+    @Column({ type: "longtext", nullable: true })
     jscode: string;
     
     @Column({ nullable: false })
     tags: string;
+    
+    @Column({ nullable: false })
+    csscdnOption: string;
+    
+    @Column({ nullable: false })
+    jquerycdnOption: string;
+    
+    @Column({ nullable: false })
+    fontscdnOption: string;
+
+    @Column({ type: 'enum', enum: SnippetStatus, default: SnippetStatus.DRAFT })
+    status: string;
 
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SnippetsService } from './snippets.service';
-import { CreateSnippetDto } from './dto/create-snippet.dto';
-import { UpdateSnippetDto } from './dto/update-snippet.dto';
+import { CreateSnippetDto } from '../dto/create-snippet.dto';
+import { UpdateSnippetDto } from '../dto/update-snippet.dto';
 
 @Controller('api/snippets')
 export class SnippetsController {

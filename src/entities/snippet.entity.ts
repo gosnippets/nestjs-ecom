@@ -1,8 +1,10 @@
 import { SnippetStatus } from 'src/enums/snippetStatus.enum';
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { User } from 'src/entities/user.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { SharedProp } from './sharedProp.helper';
 
 @Entity()
-export class Snippet {
+export class Snippet extends SharedProp{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -42,9 +44,7 @@ export class Snippet {
     @Column({ type: 'enum', enum: SnippetStatus, default: SnippetStatus.DRAFT })
     status: string;
 
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date;
+    @ManyToOne(() => User, (user) => user.snippets)
+    @JoinColumn({ name: 'userId' })
+    user: User
 }

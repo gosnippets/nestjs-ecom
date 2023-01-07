@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -35,23 +35,23 @@ export class UsersService {
   }
 
   findAll() {
-    return this.userRepository.find({ select: { id: true, name:true, username: true, email: true, role: true, createdAt: true, updatedAt: true } });
+    return this.userRepository.find();
   }
 
   findOne(id: number) {
-    return this.userRepository.findOne({ select: { id: true, name:true, username: true, email: true, role: true, createdAt: true, updatedAt: true }, where: { id } });
+    return this.userRepository.findOne({ where: { id } });
   }
 
   findByEmail(email: string) {
-    return this.userRepository.findOne({ select: { id: true, name:true, username: true, email: true, role: true, createdAt: true, updatedAt: true }, where: { email } });
+    return this.userRepository.findOne({ where: { email } });
   }
 
   findByUsername(username: string) {
-    return this.userRepository.findOne({ select: { id: true, name:true, username: true, email: true, role: true, createdAt: true, updatedAt: true }, where: { username } });
+    return this.userRepository.findOne({ where: { username } });
   }
 
   getLoginUser(email: string) {
-    return this.userRepository.findOne({ where: { email } });
+    return this.userRepository.findOne({ select: ["id", "name", "username", "email", "role","password", "createdAt", "updatedAt"], where: { email } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsEnum, IsNotEmpty } from 'class-validator';
 import { SnippetStatus } from 'src/enums/snippetStatus.enum';
 import { Unique } from 'typeorm';
 
@@ -22,4 +22,6 @@ export class CreateSnippetDto {
 
     @IsEnum(SnippetStatus)
     status: string;
+
+    userId: number;
 }

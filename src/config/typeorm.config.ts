@@ -7,7 +7,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   port: 3306,
   username: 'root',
   password: 'root',
-  database: 'nestjs',
+  database: 'ecom',
   entities: [join(__dirname, '../', '**', '*.entity.{ts,js}')],
   synchronize: true,
   migrationsRun: false,
